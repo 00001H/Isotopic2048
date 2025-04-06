@@ -135,10 +135,13 @@ GameManager.prototype.move = function (direction) {
               var merged = new Tile(positions.next, tile.value * 2);
               merged.mergedFrom = [tile, next];
 
-              merged.unstable = merged.value === 8
-                             || merged.value === 32
-                             || merged.value === 128
-                             || merged.value > 256 ? (merged.value <= 256 ? merged.value - (merged.value / 4) : 81) : 0;
+              if(merged.value < 8){
+                  merged.unstable = 0;
+              }else if(merged.value < 512){
+                   merged.unstable = ( merged.value === 32 || merged.value === 128 ) ? 0 : merged.value;
+              }else{
+                  merged.unstable = Math.ceil(x ** 1.05);
+              }
 
               // Update the score
               self.score += merged.value + (tile.unstable > 0 ? tile.unstable * 2 : 0) + (next.unstable > 0 ? next.unstable * 2 : 0);

@@ -138,7 +138,7 @@ GameManager.prototype.move = function (direction) {
               if(merged.value < 8){
                   merged.unstable = 0;
               }else if(merged.value < 512){
-                   merged.unstable = ( merged.value === 32 || merged.value === 128 ) ? 0 : merged.value;
+                   merged.unstable = ( merged.value === 16 || merged.value === 64 ) ? 0 : merged.value;
               }else{
                   merged.unstable = Math.ceil(x ** 1.05);
               }

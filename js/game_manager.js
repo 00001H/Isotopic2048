@@ -140,7 +140,7 @@ GameManager.prototype.move = function (direction) {
               }else if(merged.value < 512){
                    merged.unstable = ( merged.value === 16 || merged.value === 64 ) ? 0 : merged.value;
               }else{
-                  merged.unstable = Math.ceil(x ** 1.05);
+                  merged.unstable = Math.ceil(merged.value ** 1.05);
               }
 
               // Update the score
